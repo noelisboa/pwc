@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Solicitud de Acceso</title>
+    <script>
+        async function sendRequest() {
+            const name = document.getElementById('name').value;
+            const surname = document.getElementById('surname').value;
+
+            const response = await fetch('/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, surname })
+            });
+
+            const result = await response.json();
+            alert(result.message);
+        }
+    </script>
+</head>
+<body>
+    <h1>Solicitud de Acceso</h1>
+    <input type="text" id="name" placeholder="Nombre" required>
+    <input type="text" id="surname" placeholder="Apellido" required>
+    <button onclick="sendRequest()">Enviar</button>
+</body>
+</html>
